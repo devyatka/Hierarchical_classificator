@@ -1,1 +1,1 @@
-from .index import main
+from .index import main, views

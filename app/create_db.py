@@ -22,6 +22,7 @@ db.session.commit()
 
 db_manager.insert_child('планировка', 'home')
 
+
 # insert_child('мебель', 'home')
 # insert_child('гостинная', 'мебель')
 # insert_child('умный дом', 'home')

@@ -8,7 +8,7 @@ class StructuresTree(db.Model):
     idNearestParent = db.Column(db.Integer)
     level = db.Column(db.Integer)
 
+
 class Content(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(64), unique=True)
-
