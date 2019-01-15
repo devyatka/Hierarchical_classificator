@@ -6,6 +6,8 @@ from app.models import Content, StructuresTree
 db.drop_all()
 db.create_all()
 
+# db.session.add(StructuresTree(idParent=1, idChild=1, idNearestParent=1, level=0))
+
 first_level_records = [Content(text='home'), Content(text='work'), Content(text='entertainment')]
 db.session.add(Content(text='files', id=1))
 for rec in first_level_records:

@@ -147,9 +147,6 @@ def get_subtree(item_id, only_relative=False):
         Content.id == StructuresTree.idChild,
         parent == item_id).distinct().all()
 
-    # print StructuresTree.query.filter_by(idNearestParent=item_id).join(Content, StructuresTree.idNearestParent == Content.id)
-    # print Content.query.join(StructuresTree, Content.id == StructuresTree.idNearestParent).add_columns(Content.text, StructuresTree.idNearestParent, StructuresTree.idChild)
-
     return beautify_result(result, from_item)
 
 

@@ -17,4 +17,4 @@ if __name__ == '__main__' and __package__ is None:
     from app import models
     from app import create_db
 
-    app.run(debug=False)
+    app.run(debug=False, host='0.0.0.0')
