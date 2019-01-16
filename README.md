@@ -2,7 +2,7 @@
 
 Run with: $docker-compose up
 
-Documentation: swagger-doc/openapi.json
+* [Documentation](github.com/devyatka/Hierarchical_classificator/swagger-doc/openapi.json)
 
-Repository: github.com/devyatka/Hierarchical_classificator
+* [Repository] (github.com/devyatka/Hierarchical_classificator)
 
