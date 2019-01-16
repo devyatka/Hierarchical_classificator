@@ -1,6 +1,6 @@
 #!flask/bin/python
 # -*- coding: utf-8 -*-
-
+from flask import json
 from app.models import StructuresTree, Content
 from app import db
 import string
@@ -20,7 +20,8 @@ def insert_child(name, parent_name):
 
     parent_id = _get_id(parent_name)
     nearest_id = parent_id
-    parent_level = StructuresTree.query.filter_by(idChild=parent_id).first().level
+
+    parent_level = StructuresTree.query.filter_by(idChild=parent_id).first().level if nearest_id != 1 else 0
 
     db.session.add(StructuresTree(idParent=1, idChild=new_content.id,
                                   idNearestParent=nearest_id, level=parent_level + 1))
@@ -29,7 +30,6 @@ def insert_child(name, parent_name):
     while parent_id != 1:
         db.session.add(StructuresTree(idParent=parent_id, idChild=new_content.id,
                                       idNearestParent=nearest_id, level=parent_level + 1))
-        # parent_id = StructuresTree.query.filter_by(idChild=parent_id).first().idNearestParent
         parent_id = _get_parent_id(parent_id)
 
     db.session.commit()
@@ -50,6 +50,8 @@ def insert_child_by_id(item_id, text):
 
 
 def _get_parent_id(item_id):
+    if item_id == 1:
+        return 1
     return StructuresTree.query.filter_by(idChild=item_id).first().idNearestParent
 
 
@@ -136,7 +138,7 @@ def beautify_result(result, from_item):
     return '\n'.join(beautified) + '\n'
 
 
-def get_subtree(item_id, only_relative=False):
+def get_subtree(item_id, only_relative=False, json_needed=False):
     if not item_id_exists(item_id):
         return False
 
@@ -147,7 +149,7 @@ def get_subtree(item_id, only_relative=False):
         Content.id == StructuresTree.idChild,
         parent == item_id).distinct().all()
 
-    return beautify_result(result, from_item)
+    return json.dumps(result) if json_needed else beautify_result(result, from_item)
 
 
 def get_relative(item_id):

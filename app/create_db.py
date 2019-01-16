@@ -3,12 +3,10 @@
 from app import db, db_manager
 from app.models import Content, StructuresTree
 
-db.drop_all()
+# db.drop_all()
 db.create_all()
 
-# db.session.add(StructuresTree(idParent=1, idChild=1, idNearestParent=1, level=0))
-
-first_level_records = [Content(text='home'), Content(text='work'), Content(text='entertainment')]
+first_level_records = [Content(text='entertainment'), Content(text='work'), Content(text='home')]
 db.session.add(Content(text='files', id=1))
 for rec in first_level_records:
     db.session.add(rec)

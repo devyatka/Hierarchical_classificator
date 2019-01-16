@@ -1,0 +1,255 @@
+{
+  "openapi" : "3.0.1",
+  "info" : {
+    "title" : "API for managing hierarchical structures",
+    "description" : "You can insert new items, change them, delete and get the tree in json or beautifyed output",
+    "version" : "0.1"
+  },
+  "servers" : [ {
+    "url" : "http://127.0.0.1:5000"
+  } ],
+  "paths" : {
+    "/files/4" : {
+      "get" : {
+        "description" : "Get tree of values from item id",
+        "parameters" : [ {
+          "name" : "json",
+          "in" : "query",
+          "required" : false,
+          "style" : "form",
+          "explode" : true,
+          "schema" : {
+            "type" : "boolean"
+          },
+          "example" : "True"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "OK",
+            "content" : {
+              "text/html; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          }
+        },
+        "servers" : [ {
+          "url" : "http://127.0.0.1:5000"
+        } ]
+      },
+      "put" : {
+        "description" : "Change text of object by id",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/body"
+              },
+              "examples" : {
+                "0" : {
+                  "value" : "{\"new_text\": \"планировка\"}"
+                },
+                "1" : {
+                  "value" : "{\"new_text\": \"  новый дом\"}"
+                },
+                "2" : {
+                  "value" : "{\"new_text\": \"70B@0BK\"}"
+                },
+                "3" : {
+                  "value" : "{\"new_text\": \"новый дом\"}"
+                },
+                "4" : {
+                  "value" : "{\"new_text\": \"homeee\"}"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Value changed",
+            "content" : {
+              "text/html; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          },
+          "406" : {
+            "description" : "Value cannot be changed",
+            "content" : {
+              "text/html; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          }
+        },
+        "servers" : [ {
+          "url" : "http://127.0.0.1:5000"
+        } ]
+      },
+      "post" : {
+        "description" : "Insert new item",
+        "requestBody" : {
+          "content" : {
+            "application/json" : {
+              "schema" : {
+                "$ref" : "#/components/schemas/body_1"
+              },
+              "examples" : {
+                "0" : {
+                  "value" : "{\"new_text\": \"планировка\"}"
+                },
+                "1" : {
+                  "value" : "{\"new_text\": \"  новый дом\"}"
+                },
+                "2" : {
+                  "value" : "{\"new_text\": \"70B@0BK\"}"
+                },
+                "3" : {
+                  "value" : "{\"new_text\": \"новый дом\"}"
+                },
+                "4" : {
+                  "value" : "{\"new_text\": \"homeee\"}"
+                }
+              }
+            }
+          }
+        },
+        "responses" : {
+          "200" : {
+            "description" : "Item cannot be inserted",
+            "content" : {
+              "text/html; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          },
+          "201" : {
+            "description" : "New item inserted",
+            "content" : {
+              "text/html; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          }
+        },
+        "servers" : [ {
+          "url" : "http://127.0.0.1:5000"
+        } ]
+      },
+      "delete" : {
+        "description" : "Delete item by id",
+        "responses" : {
+          "200" : {
+            "description" : "Item deleted",
+            "content" : {
+              "text/html; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          },
+          "406" : {
+            "description" : "Item cannot be deleted",
+            "content" : {
+              "text/html; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          }
+        },
+        "servers" : [ {
+          "url" : "http://127.0.0.1:5000"
+        } ]
+      },
+      "servers" : [ {
+        "url" : "http://127.0.0.1:5000"
+      } ]
+    },
+    "/" : {
+      "get" : {
+        "description" : "Redirection to /files/1",
+        "responses" : {
+          "200" : {
+            "description" : "Redirected",
+            "content" : {
+              "text/html; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          }
+        },
+        "servers" : [ {
+          "url" : "http://127.0.0.1:5000"
+        } ]
+      }
+    },
+    "/files/" : {
+      "get" : {
+        "description" : "Redirection to /files/1",
+        "responses" : {
+          "200" : {
+            "description" : "Redirected",
+            "content" : {
+              "text/html; charset=utf-8" : {
+                "schema" : {
+                  "type" : "string"
+                },
+                "examples" : { }
+              }
+            }
+          }
+        },
+        "servers" : [ {
+          "url" : "http://127.0.0.1:5000"
+        } ]
+      },
+      "servers" : [ {
+        "url" : "http://127.0.0.1:5000"
+      } ]
+    }
+  },
+  "components" : {
+    "schemas" : {
+      "body" : {
+        "type" : "object",
+        "properties" : {
+          "new_text" : {
+            "type" : "string"
+          }
+        }
+      },
+      "body_1" : {
+        "type" : "object",
+        "properties" : {
+          "new_text" : {
+            "type" : "string"
+          }
+        }
+      }
+    }
+  }
+}

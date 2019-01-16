@@ -9,12 +9,18 @@ def root():
     return redirect('/files/1')
 
 
+@main.route('/files/')
+def to_files():
+    return redirect('/files/1')
+
+
 @main.route('/files/<int:item_id>', methods=['GET'])
 def files(item_id):
     # return render_template('index.html')
     args = parser.parse_args()
     relative = args['relative_only'] or False
-    subtree = db_manager.get_subtree(item_id, only_relative=relative)
+    json_needed = args['json'] or False
+    subtree = db_manager.get_subtree(item_id, only_relative=relative, json_needed=json_needed)
     return (subtree, 200) if subtree else ('No such item\n', 406)
 
 
@@ -43,4 +49,4 @@ def delete_record(item_id):
 parser = reqparse.RequestParser()
 parser.add_argument('new_text')
 parser.add_argument('relative_only')
-
+parser.add_argument('json')
