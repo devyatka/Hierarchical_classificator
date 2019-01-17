@@ -4,6 +4,7 @@ from app import db, db_manager
 from app.models import Content, StructuresTree
 
 db.create_all()
+db.session.commit()
 
 exists = Content.query.filter_by(id=1).first()
 
